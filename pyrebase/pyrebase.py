@@ -155,6 +155,14 @@ class Auth:
         raise_detailed_error(request_object)
         return request_object.json()
 
+    def verify_email_code(self, reset_code):
+        request_ref = "https://identitytoolkit.googleapis.com/v1/accounts:update?key={0}".format(self.api_key)
+        headers = {"content-type": "application/json; charset=UTF-8"}
+        data = json.dumps({"oobCode": reset_code})
+        request_object = requests.post(request_ref, headers=headers, data=data)
+        raise_detailed_error(request_object)
+        return request_object.json()
+
     def create_user_with_email_and_password(self, email, password):
         request_ref = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key={0}".format(self.api_key)
         headers = {"content-type": "application/json; charset=UTF-8" }

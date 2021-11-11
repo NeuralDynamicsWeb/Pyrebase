@@ -13,3 +13,4 @@ pyrebase.py.orig
 /tests/config.py
 .cache
 
+/env
